@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GitAutoCommit": {
+      "commandName": "Project",
+      "commandLineArgs": "--repo=\r\n--times=3"
+    }
+  }
+}

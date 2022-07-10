@@ -1,9 +1,5 @@
-﻿//// See https://aka.ms/new-console-template for more information
-//Console.WriteLine("Hello, World!");
-
-using LibGit2Sharp;
+﻿using LibGit2Sharp;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.CommandLine;
 
 namespace GitAutoCommit;
 
@@ -104,7 +100,11 @@ class App {
             return;
         }
         Commands.Stage(repository, TargetModifyFile);
-        repository.Commit("modify", commit.Author, commit.Committer);
+        repository.Commit(
+            "modify",
+            new(commit.Author.Name, commit.Author.Email, DateTimeOffset.Now),
+            new(commit.Committer.Name, commit.Committer.Email, DateTimeOffset.Now)
+        );
     }
 
     /// <summary>

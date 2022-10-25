@@ -4,6 +4,9 @@
     repo: git 仓库
     modifyFile: 用于记录修改的文件路径，相对于 repo 的路径
     times[可选]: 提交次数，默认为 3
+    push[可选]: 是否推送到远程仓库，默认为 false，默认 remote 为 origin。push 失败则会一直重试
+        选项: [true, false]
+    remote[可选]: 指定远程仓库，默认为 origin
 
 示例：
     repo='D:/temp/project' modifyFile='demo.txt'

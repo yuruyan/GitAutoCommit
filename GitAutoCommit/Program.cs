@@ -1,5 +1,6 @@
 ﻿using LibGit2Sharp;
 using Microsoft.Extensions.Configuration;
+using System.Text;
 
 namespace GitAutoCommit;
 
@@ -111,7 +112,7 @@ class App {
     /// 修改文件
     /// </summary>
     private void ModifyFile() {
-        using var stream = File.Open(TargetModifyFile, FileMode.Append, FileAccess.Write);
-        stream.Write(new byte[] { 32 });
+        using var stream = File.Open(TargetModifyFile, FileMode.Create, FileAccess.Write);
+        stream.Write(Encoding.ASCII.GetBytes($"{Random.Shared.NextDouble()}{DateTimeOffset.UtcNow.Millisecond}"));
     }
 }

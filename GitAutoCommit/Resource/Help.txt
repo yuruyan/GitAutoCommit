@@ -1,0 +1,9 @@
+﻿Git 自动提交
+
+参数列表：
+    repo: git 仓库
+    modifyFile: 用于记录修改的文件路径，相对于 repo 的路径
+    times[可选]: 提交次数，默认为 3
+
+示例：
+    repo='D:/temp/project' modifyFile='demo.txt'

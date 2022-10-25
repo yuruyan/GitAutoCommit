@@ -76,6 +76,7 @@ public class App {
             try {
                 Process? process = Process.Start(new ProcessStartInfo {
                     FileName = "git",
+                    WorkingDirectory = ArgInfo.RepoPath,
                     Arguments = $"push {ArgInfo.Remote} {Repository.Head.FriendlyName}",
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
@@ -88,7 +89,8 @@ public class App {
                 // 判断是否出现 error、fatal
                 string output = process.StandardError.ReadToEnd() + process.StandardOutput.ReadToEnd();
                 return !(output.Contains("fatal") || output.Contains("error"));
-            } catch {
+            } catch (Exception error) {
+                Logger.Error(error);
                 return false;
             }
         };
@@ -101,6 +103,7 @@ public class App {
         // 不断重试
         for (int i = 1; !Push(remote); i++) {
             Logger.Error($"git push failed {i} times");
+            return;
         }
     }
 }

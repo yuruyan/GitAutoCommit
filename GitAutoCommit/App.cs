@@ -88,7 +88,7 @@ public class App {
                 process.WaitForExit();
                 // 判断是否出现 error、fatal
                 string output = process.StandardError.ReadToEnd() + process.StandardOutput.ReadToEnd();
-                return !(output.Contains("fatal") || output.Contains("error"));
+                return !(output.Contains("fatal") || output.Contains("failed") || output.Contains("error"));
             } catch (Exception error) {
                 Logger.Error(error);
                 return false;
@@ -103,7 +103,6 @@ public class App {
         // 不断重试
         for (int i = 1; !Push(remote); i++) {
             Logger.Error($"git push failed {i} times");
-            return;
         }
     }
 }

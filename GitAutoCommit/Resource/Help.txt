@@ -2,7 +2,7 @@
 
 参数列表：
     repo: git 仓库
-    modifyFile: 用于记录修改的文件路径，相对于 repo 的路径
+    modifyFile[可选]: 用于记录修改的文件路径，相对于 repo 的路径，默认为名为 ForModify 的文件
     times[可选]: 提交次数，默认为 3
     push[可选]: 是否推送到远程仓库，默认为 false，默认 remote 为 origin。push 失败则会一直重试
         选项: [true, false]
